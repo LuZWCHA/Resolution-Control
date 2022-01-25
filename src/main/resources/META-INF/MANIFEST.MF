@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: resolutioncontrol
+Implementation-Version: 1.4
+Specification-Vendor: nowandfuture
+Specification-Title: resolutioncontrol
+Implementation-Timestamp: 2020-11-01T20:05:23+0800
+MixinConnector: io.github.ultimateboomer.resolutioncontrol.mixin.RSCConnector
+Specification-Version: 1
+Implementation-Vendor: nowandfuture
+

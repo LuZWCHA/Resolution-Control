@@ -1,0 +1,27 @@
+{
+  "key.categories.resolutioncontrol": "分辨率控制",
+
+  "key.resolutioncontrol.settings": "分辨率控制选项",
+  "key.resolutioncontrol.screenshot": "使用设定分辨率截图",
+
+  "resolutioncontrol.settings.title": "分辨率控制",
+
+  "resolutioncontrol.settings.main": "主选项",
+
+  "resolutioncontrol.settings.main.upscale": "上采样插值算法:",
+  "resolutioncontrol.settings.main.downscale": "下采样插值算法:",
+  "resolutioncontrol.settings.main.linear": "线性插值",
+  "resolutioncontrol.settings.main.nearest": "最近邻插值",
+  "resolutioncontrol.settings.main.estimate": "预估体积: %s",
+
+  "resolutioncontrol.settings.screenshot": "截图",
+  "resolutioncontrol.settings.screenshot.overrideSize": "使用设置尺寸:",
+  "resolutioncontrol.settings.screenshot.alwaysAllocated": "总是分配帧缓冲:",
+  "resolutioncontrol.settings.screenshot.size": "图像尺寸:",
+
+  "resolutioncontrol.settings.info": "信息",
+  "resolutioncontrol.settings.info.gpu": "GPU:",
+  "resolutioncontrol.settings.info.maxTextureSize": "最大材质尺寸:",
+
+  "resolutioncontrol.screenshot.wait": "正在处理截图..."
+}

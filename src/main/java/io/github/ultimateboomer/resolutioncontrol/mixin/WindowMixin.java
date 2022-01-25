@@ -1,0 +1,61 @@
+package io.github.ultimateboomer.resolutioncontrol.mixin;
+
+import io.github.ultimateboomer.resolutioncontrol.ResolutionControlMod;
+import net.minecraft.client.MainWindow;
+import net.minecraft.util.math.MathHelper;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+@Mixin(value = MainWindow.class, remap = false)
+public abstract class WindowMixin {
+	@Inject(at = @At("RETURN"), method = "getFramebufferWidth", cancellable = true)
+	private void getFramebufferWidth(CallbackInfoReturnable<Integer> ci) {
+		if (ResolutionControlMod.isInit()  && ResolutionControlMod.getInstance().isScreenshotting()) {
+			ci.setReturnValue(ResolutionControlMod.getInstance().getScreenshotWidth());
+		} else {
+			ci.setReturnValue(scale(ci.getReturnValueI()));
+		}
+	}
+	
+	@Inject(at = @At("RETURN"), method = "getFramebufferHeight", cancellable = true)
+	private void getFramebufferHeight(CallbackInfoReturnable<Integer> ci) {
+		if (ResolutionControlMod.isInit() && ResolutionControlMod.getInstance().isScreenshotting()) {
+			ci.setReturnValue(ResolutionControlMod.getInstance().getScreenshotHeight());
+		} else {
+			ci.setReturnValue(scale(ci.getReturnValueI()));
+		}
+	}
+	
+	private int scale(int value) {
+		if(!ResolutionControlMod.isInit()) return value;
+		double scaleFactor = ResolutionControlMod.getInstance().getCurrentScaleFactor();
+		return Math.max(MathHelper.ceil((double) value * scaleFactor), 1);
+	}
+	
+	@Inject(at = @At("RETURN"), method = "getGuiScaleFactor", cancellable = true)
+	private void getScaleFactor(CallbackInfoReturnable<Double> ci) {
+		if(ResolutionControlMod.isInit()) {
+			ci.setReturnValue(ci.getReturnValueD() * ResolutionControlMod.getInstance().getCurrentScaleFactor());
+		}else{
+			ci.setReturnValue(ci.getReturnValueD());
+		}
+	}
+	
+	@Inject(at = @At("RETURN"), method = "onWindowSizeUpdate")
+	private void onFramebufferSizeChanged(CallbackInfo ci) {
+		if(ResolutionControlMod.isInit()) {
+			ResolutionControlMod.getInstance().onResolutionChanged();
+		}
+
+	}
+	
+	@Inject(at = @At("RETURN"), method = "updateFramebufferSize")
+	private void onUpdateFramebufferSize(CallbackInfo ci) {
+		if(ResolutionControlMod.isInit()) {
+			ResolutionControlMod.getInstance().onResolutionChanged();
+		}
+	}
+}
