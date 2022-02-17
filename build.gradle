@@ -16,7 +16,7 @@ apply plugin: 'org.spongepowered.mixin'
 
 
 
-version = '1.6'
+version = '3.0.0'
 group = 'io.github.ultimateboomer.resolutioncontrol' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'resolutioncontrol'
 
@@ -60,7 +60,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                examplemod {
+                resolutioncontrol {
                     source sourceSets.main
                 }
             }
@@ -82,7 +82,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                examplemod {
+                resolutioncontrol {
                     source sourceSets.main
                 }
             }
@@ -107,7 +107,7 @@ minecraft {
             args '--mod', 'resolutioncontrol', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                examplemod {
+                resolutioncontrol {
                     source sourceSets.main
                 }
             }
@@ -127,7 +127,7 @@ dependencies {
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.0'
-    annotationProcessor 'org.spongepowered:mixin:0.8:processor'
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 //    implementation 'org.spongepowered:mixin:0.8'
 
     // You may put jars on which you depend on in ./libs or you may define them like so..

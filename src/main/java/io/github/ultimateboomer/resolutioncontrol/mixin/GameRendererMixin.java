@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import io.github.ultimateboomer.resolutioncontrol.ResolutionControlMod;
 
-@Mixin(value = GameRenderer.class, remap = false)
+@Mixin(value = GameRenderer.class)
 public abstract class GameRendererMixin {
 	@Inject(at = @At("HEAD"), method = "renderWorld")
 	private void onRenderWorldBegin(CallbackInfo callbackInfo) {

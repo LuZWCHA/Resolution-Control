@@ -6,6 +6,7 @@
     "FramebufferMixin",
     "GameRendererMixin",
     "MinecraftAccessor",
+    "MainWindowAccessor",
     "MinecraftClientMixin",
     "WindowMixin",
     "WorldRendererMixin"
@@ -14,7 +15,7 @@
     "defaultRequire": 1
   },
   "mixins": [
-    "MainWindowAccessor"
+
   ],
   "refmap": "resolutioncontrol.refmap.json"
 }

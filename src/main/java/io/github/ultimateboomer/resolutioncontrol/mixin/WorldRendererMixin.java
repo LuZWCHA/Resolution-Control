@@ -9,22 +9,24 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(WorldRenderer.class)
+@Mixin(value = WorldRenderer.class)
 public class WorldRendererMixin {
-    @Shadow(remap = false)
+    @Shadow
     private Framebuffer entityOutlineFramebuffer;
 
-    @Inject(at = @At("RETURN"), method = "makeEntityOutlineShader", remap = false)
+    @Inject(at = @At("RETURN"), method = "makeEntityOutlineShader")
     private void onLoadEntityOutlineShader(CallbackInfo ci) {
-        if(ResolutionControlMod.isInit())
+        if(ResolutionControlMod.isInit()) {
             ResolutionControlMod.getInstance().resizeMinecraftFramebuffers();
+        }
     }
 
-    @Inject(at = @At("RETURN"), method = "resetFrameBuffers", remap = false)
+    @Inject(at = @At("RETURN"), method = "resetFrameBuffers")
     private void onOnResized(CallbackInfo ci) {
         if (entityOutlineFramebuffer == null) return;
-        if(ResolutionControlMod.isInit())
+        if(ResolutionControlMod.isInit()) {
             ResolutionControlMod.getInstance().resizeMinecraftFramebuffers();
+        }
     }
 
 //    @Inject(at = @At("RETURN"), method = "loadTransparencyShader")

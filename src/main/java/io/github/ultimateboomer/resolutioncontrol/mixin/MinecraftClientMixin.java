@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = Minecraft.class, remap = false)
+@Mixin(value = Minecraft.class)
 public abstract class MinecraftClientMixin{
 
 	@Inject(method = "<init>", at = @At(value = "RETURN", target = "Lnet/minecraft/client/shader/Framebuffer;<init>(IIZZ)V"))

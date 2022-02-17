@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.nio.IntBuffer;
 
-@Mixin(value = Framebuffer.class, remap = false)
+@Mixin(value = Framebuffer.class)
 public abstract class FramebufferMixin {
     @Unique private boolean isMipmapped;
     @Unique private float scaleMultiplier;
@@ -38,10 +38,10 @@ public abstract class FramebufferMixin {
             target = "Lcom/mojang/blaze3d/platform/GlStateManager;texParameter(III)V"))
     private void onSetTexFilter(int target, int pname, int param) {
 
-        if(ResolutionControlMod.isInit())
+        if(ResolutionControlMod.isInit()) {
             if (pname == GL11.GL_TEXTURE_MIN_FILTER) {
-            GlStateManager.texParameter(target, pname,
-                    ResolutionControlMod.getInstance().getUpscaleAlgorithm().getId(isMipmapped));
+                GlStateManager.texParameter(target, pname,
+                        ResolutionControlMod.getInstance().getUpscaleAlgorithm().getId(isMipmapped));
             } else if (pname == GL11.GL_TEXTURE_MAG_FILTER) {
                 GlStateManager.texParameter(target, pname,
                         ResolutionControlMod.getInstance().getDownscaleAlgorithm().getId(false));
@@ -51,6 +51,9 @@ public abstract class FramebufferMixin {
             } else {
                 GlStateManager.texParameter(target, pname, param);
             }
+        }else{
+            GlStateManager.texParameter(target, pname, param);
+        }
     }
 
     @Redirect(method = "createBuffers", at = @At(value = "INVOKE",

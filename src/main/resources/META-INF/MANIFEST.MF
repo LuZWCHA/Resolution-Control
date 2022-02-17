@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Implementation-Title: resolutioncontrol
-Implementation-Version: 1.4
+Implementation-Version: 3.0.0
 Specification-Vendor: nowandfuture
 Specification-Title: resolutioncontrol
 Implementation-Timestamp: 2020-11-01T20:05:23+0800

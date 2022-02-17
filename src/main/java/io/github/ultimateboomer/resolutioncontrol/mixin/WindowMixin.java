@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = MainWindow.class, remap = false)
+@Mixin(value = MainWindow.class)
 public abstract class WindowMixin {
 	@Inject(at = @At("RETURN"), method = "getFramebufferWidth", cancellable = true)
 	private void getFramebufferWidth(CallbackInfoReturnable<Integer> ci) {

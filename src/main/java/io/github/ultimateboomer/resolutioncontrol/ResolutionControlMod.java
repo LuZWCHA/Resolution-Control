@@ -141,10 +141,6 @@ public class ResolutionControlMod{
 
 		// TODO: 2022/1/24
 		optifineInstalled = false;
-
-		//Forge mod will be init after framebuffer init, do init again after the mod is loaded.
-//		resizeMinecraftFramebuffers();
-//		onResolutionChanged();
 	}
 
 	public static boolean isInit(){
